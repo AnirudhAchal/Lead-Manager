@@ -4,4 +4,4 @@ from .api import LeadViewSet
 router = routers.DefaultRouter()
 router.register('api/leads', LeadViewSet, 'leads')
 
-urlpatterns = router.url
+urlpatterns = router.urls
