@@ -6,6 +6,8 @@ class LeadContainerView extends Component {
   constructor(props) {
     super(props);
 
+    this.handleDeleteLead = this.handleDeleteLead.bind(this);
+
     this.state = {
       leads: [],
     };
@@ -22,9 +24,27 @@ class LeadContainerView extends Component {
       });
   }
 
+  handleDeleteLead(lead) {
+    axios
+      .delete(`/api/leads/${lead.id}`)
+      .then(() => {
+        axios
+          .get("/api/leads/")
+          .then((res) => {
+            this.setState({ leads: res.data });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
     const { leads } = this.state;
-    return <LeadView leads={leads} />;
+    return <LeadView leads={leads} onDeleteLead={this.handleDeleteLead} />;
   }
 }
 

@@ -2,16 +2,19 @@ import React, { Component, Fragment } from "react";
 
 class LeadFormView extends Component {
   render() {
+    const { lead, onFormChange, onSubmit } = this.props;
     return (
       <Fragment>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className="form-group">
-            <label htmlFor="leadUsername">Username</label>
+            <label htmlFor="leadName">Name</label>
             <input
               type="text"
               className="form-control"
-              id="leadUsername"
-              placeholder="Username"
+              id="leadName"
+              placeholder="Name"
+              value={lead.name}
+              onChange={(event) => onFormChange(event, "name")}
             />
           </div>
           <div className="form-group">
@@ -21,6 +24,8 @@ class LeadFormView extends Component {
               className="form-control"
               id="leadEmail"
               placeholder="Enter email"
+              value={lead.email}
+              onChange={(event) => onFormChange(event, "email")}
             />
           </div>
           <div className="form-group">
@@ -30,6 +35,8 @@ class LeadFormView extends Component {
               className="form-control"
               id="leadMessage"
               placeholder="Enter message"
+              value={lead.message}
+              onChange={(event) => onFormChange(event, "message")}
             />
           </div>
           <button type="submit" className="btn btn-primary">

@@ -1,5 +1,5 @@
 const LeadView = (props) => {
-  const { leads } = props;
+  const { leads, onDeleteLead } = props;
   return (
     <div>
       <table className="table table-striped">
@@ -20,7 +20,13 @@ const LeadView = (props) => {
               <td>{lead.email}</td>
               <td>{lead.message}</td>
               <td>
-                <button className="btn btn-danger btn-sm"> Delete</button>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => onDeleteLead(lead)}
+                >
+                  {" "}
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
